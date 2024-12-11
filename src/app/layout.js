@@ -17,13 +17,20 @@ export const metadata = {
   description: "study buddy who helps in understanding topics",
 };
 
+
+
+
+import Providers from "./providers";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

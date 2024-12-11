@@ -1,29 +1,37 @@
 
 import { useRef } from "react";
+import toast from "react-hot-toast";
 const ReaderComponent = () => {
     const InputRef = useRef();
 
     const handleDropEventHandler = (e) => {
         e.preventDefault();
         const { files, items } = e.dataTransfer;
+        let file;
 
-
-        if (files.length >1 || items.length >1){
-            
+        // validating the files drop is one 
+        if (files.length > 1 || items.length > 1) {
+            toast.error('Please drop only one file');
+            return;
         }
-        if (ev.dataTransfer.items) {
 
-            [...ev.dataTransfer.items].forEach((item, i) => {
-                if (item.kind === "file") {
-                    const file = item.getAsFile();
-                    console.log(`… file[${i}].name = ${file.name}`);
-                }
-            });
+
+        if (e.dataTransfer.items) {
+            file = e.dataTransfer.items[0];
         } else {
-            [...ev.dataTransfer.files].forEach((file, i) => {
-                console.log(`… file[${i}].name = ${file.name}`);
-            });
+            file = e.dataTransfer.files[0];
         }
+
+        // validating file is pdf 
+
+        if (file && file.type != 'application/pdf') {
+            toast.error('Please upload a (valid) pdf ');
+            return;
+        }
+
+
+        convertFileToUnit8Array(file);
+
     };
 
     const handleDragOverHandler = (e) => {
@@ -39,7 +47,12 @@ const ReaderComponent = () => {
 
     const HandleFileInput = (e) => {
         const files = e.target.files;
-        console.log("Files selected from input:", files);
+
+
+        let file = files[0];
+
+        convertFileToUnit8Array(file);
+
     };
 
     return (
@@ -65,3 +78,38 @@ const ReaderComponent = () => {
 };
 
 export default ReaderComponent;
+
+
+const convertFileToUnit8Array = (file) => {
+    // reades the file from system and convert it to unit8array
+    // take fileObj from drag and drop or input file
+
+
+    const reader = new FileReader();
+
+
+    reader.addEventListener('progress', (e) => {
+        console.log(e)
+    })
+    reader.addEventListener('load', (e) => {
+
+        if (e.target.readyState != 2) {
+            toast.error('Failed to read the file');
+            return null;
+        }
+        return e.target.result;
+    })
+    reader.addEventListener('loadstart', () => {
+
+        toast.success('file reading is started ');
+    })
+
+    reader.addEventListener('loadend', () => {
+
+        toast.success('successfully read the file');
+    })
+    reader.readAsArrayBuffer(file);
+
+
+
+}
