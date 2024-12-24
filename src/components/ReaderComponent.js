@@ -19,14 +19,16 @@ const ReaderComponent = (props) => {
     return (
         <>
 
-            <textarea
+            <div className="p-5 bg-gray-100 h-screen ">
+                <textarea
+                    placeholder="Please enter the topic  like web page content or topic in book"
+                    onChange={handleChange}
+                    className="border-2 shadow-lg rounded-lg   h-full   border-black w-full  p-5"
+                >
 
-                onChange={handleChange}
-                className="border-2  rounded  border-black w-full min-h-screen max-h-screen p-5"
-            >
 
-
-            </textarea>
+                </textarea>
+            </div>
         </>
     );
 };
