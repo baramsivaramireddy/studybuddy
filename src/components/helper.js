@@ -1,9 +1,10 @@
 
 
-'use server';
+
 import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
 
 import axios from "axios";
+import toast from "react-hot-toast";
 const GenerateMCQ = async (text) => {
 
 
@@ -24,7 +25,14 @@ const GenerateMCQ = async (text) => {
 
 const callGeminiAPI = async (payload) => {
 
-  const genAI = new GoogleGenerativeAI(process.env.GEMINIAPIKEY);
+
+  let token = localStorage.getItem('token');
+  if (!token) {
+    toast.error('Please enter token');
+    throw new Error("Please missing");
+
+  }
+  const genAI = new GoogleGenerativeAI(token);
 
   const schema = {
     description: "List of questions",
@@ -181,10 +189,18 @@ Example json  containing two question .
   });
 
   const prompt = payload || "";
+  let result = null;
+  try {
+    result = await model.generateContent(prompt);
 
-  const result = await model.generateContent(prompt);
+  } catch (err) {
+    console.log(err)
+    toast.error('Please enter  valid Gemini API Key in the top right corner');
+  }
 
   return result.response.text()
+
+
 
 
 }

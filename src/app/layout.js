@@ -13,7 +13,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Study Table",
+  title: "Question buddy",
   description: "study buddy who helps in understanding topics",
 };
 

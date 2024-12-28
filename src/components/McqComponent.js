@@ -1,24 +1,23 @@
 'use client';
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const MCQComponent = (props) => {
 
-    const { questionsAndAswers, text, generateQuestion } = props;
+    const { questionsAndAswers, text, token, setToken, generateQuestion } = props;
 
 
     const isTextEnough = (text) => {
-
         // text more than 100 words
         const words = text.trim().split(/\s+/);
-
         return words.length > 100;
     };
 
     const isGenerateDisabled = !isTextEnough(text);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-
+    const [tempToken, setTempToken] = useState(null);
     const handleGenerateButton = async () => {
 
         try {
@@ -35,6 +34,83 @@ const MCQComponent = (props) => {
     }
 
 
+    const handleTokenSubmitButton = (e) => {
+        if(!tempToken){
+            toast.error('Please enter valid token');
+        }
+        setToken(tempToken);
+        localStorage.setItem('token', tempToken);
+    }
+
+
+    if (!token) {
+
+        return (<>
+
+            <div className="h-screen flex justify-center items-center bg-gray-100 p-5">
+
+                <div className="shadow-xl p-5  min-w-64 min-h-80 bg-white rounded-lg">
+
+
+                    <div className="flex justify-center items-center flex-col gap-5" >
+                        <p className="text-center font-semibold ">  Please enter your Gemini API key </p>
+
+                        <div className="">
+                            <input
+                                className="border-2  rounded p-1"
+                                type="password"
+                                onChange={(e) => {
+                                    setTempToken(e.target.value)
+                                }}
+                            />
+                        </div>
+                        <button
+                            onClick={handleTokenSubmitButton}
+                            className="border-2  rounded-full py-2 px-4 bg-green-500 hover:text-white text-xl hover:bg-green-700"
+                        > Submit</button>
+                        <p className="text-xs text-red-500"> Note: We do not store your Gemini API key . It is stored on your device</p>
+                    </div>
+
+                    <div className="my-5">
+                        <div>
+                            <p className="text-xl">  How to get free Gemini key ?</p>
+                        </div>
+                        <div className="px-5">
+
+                            <p>Reference </p>
+
+                            <ul className="list-disc ml-4" >
+
+                                <li>
+
+                                    <a className={`text-blue-300`} href={`https://ai.google.dev/gemini-api/docs/api-key`} target="_blank">
+                                        Click here to get Gemini API Key -Official Site
+                                    </a>
+
+                                </li>
+                                <li>
+                                    <p>
+                                        
+                                            <a 
+                                             className={`text-blue-300 capitalize`}
+                                            href={`https://youtu.be/03Hcs6PnWU4?si=eJMMI1wvo-_wXJRv`}
+                                            target="_blank">
+                                                youtube video
+                                            </a>
+                                       
+                                    </p>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>)
+
+
+    }
+
     if (loading) {
         return (<>
 
@@ -48,7 +124,7 @@ const MCQComponent = (props) => {
 
                         <div className="py-5 flex gap-5 flex-col ">
                             <p className="text-3xl"> Question  </p>
-                            <p className="text-xl bg-slate-100 w-96 h-10 rounded  "> { }  </p>
+                            <p className="text-xl bg-slate-100  h-10 rounded  "> { }  </p>
                         </div>
 
                         <div className="">
@@ -86,7 +162,7 @@ const MCQComponent = (props) => {
                             </div>
                         </div>
                         <div className="py-5">
-                            <p> Please wait we are using free Gemini api . I takes time </p>
+                            <p> Please wait we are using  Gemini api . I takes time </p>
                         </div>
                     </div>
                 </div>
@@ -192,7 +268,7 @@ const MCQComponentUI = (props) => {
 
     const [correctedAnswerIndexs, SetCorrectionAnswerIndexs] = useState([]);
 
-    
+
 
     useEffect(() => {
         let temp = [];
@@ -203,7 +279,7 @@ const MCQComponentUI = (props) => {
         });
 
         SetCorrectionAnswerIndexs(temp);
-    }, [presentQuestion,questionsAndAswers])
+    }, [presentQuestion, questionsAndAswers])
 
 
 
@@ -248,11 +324,10 @@ const MCQComponentUI = (props) => {
 
     const handleNextbutton = () => {
 
-        console.log(correctedAnswerIndexs , selectedOptions,correctedAnswerIndexs.every((index) => {   console.log(index);return selectedOptions.has(index)} )  )
 
-        if ( !correctedAnswerIndexs.every((index) => selectedOptions.has(String(index)) ) ){
+        if (!correctedAnswerIndexs.every((index) => selectedOptions.has(String(index)))) {
 
-            toast.error('Select all correct answers');
+            toast.error('correct answers still left out');
             return;
         }
         if (presentQuestion < totalQuestions) {
@@ -267,7 +342,7 @@ const MCQComponentUI = (props) => {
     }
 
     return (<>
-        <div className="  h-screen overflow-y-auto py-5  flex bg-gray-100 justify-center items-center p-10">
+        <div className="  h-screen overflow-y-auto   flex bg-gray-100 justify-center items-center p-10">
             <div className="p-5 min-w-64 min-h-80  shadow-lg rounded-lg bg-white">
 
 
