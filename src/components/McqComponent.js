@@ -35,7 +35,7 @@ const MCQComponent = (props) => {
 
 
     const handleTokenSubmitButton = (e) => {
-        if(!tempToken){
+        if (!tempToken) {
             toast.error('Please enter valid token');
         }
         setToken(tempToken);
@@ -47,9 +47,9 @@ const MCQComponent = (props) => {
 
         return (<>
 
-            <div className="h-screen flex justify-center items-center bg-gray-100 p-5">
+            <div className="h-screen flex justify-center  items-center bg-gray-100 dark:bg-black dark:text-white p-5">
 
-                <div className="shadow-xl p-5  min-w-64 min-h-80 bg-white rounded-lg">
+                <div className="shadow-xl p-5 border-2  border-white  min-w-64 min-h-80 bg-white dark:bg-black dark:text-white rounded-lg">
 
 
                     <div className="flex justify-center items-center flex-col gap-5" >
@@ -90,14 +90,14 @@ const MCQComponent = (props) => {
                                 </li>
                                 <li>
                                     <p>
-                                        
-                                            <a 
-                                             className={`text-blue-300 capitalize`}
+
+                                        <a
+                                            className={`text-blue-300 capitalize`}
                                             href={`https://youtu.be/03Hcs6PnWU4?si=eJMMI1wvo-_wXJRv`}
                                             target="_blank">
-                                                youtube video
-                                            </a>
-                                       
+                                            youtube video
+                                        </a>
+
                                     </p>
                                 </li>
 
@@ -114,10 +114,10 @@ const MCQComponent = (props) => {
     if (loading) {
         return (<>
 
-            <div className=" h-screen  flex justify-center items-center bg-gray-100 p-5 ">
+            <div className=" h-screen  flex justify-center items-center bg-gray-100 dark:bg-black dark:text-white p-5 ">
 
 
-                <div className=" shadow-xl p-5 min-w-64 min-h-80  bg-white rounded-lg animate-pulse ">
+                <div className=" shadow-xl p-5 min-w-64 min-h-80  bg-white  dark:bg-black dark:text-white   rounded-lg animate-pulse ">
 
                     <div>
 
@@ -176,8 +176,8 @@ const MCQComponent = (props) => {
 
         return (<>
 
-            <div className=" flex justify-center h-screen   items-center flex-col bg-gray-100 p-6">
-                <div className="w-full  bg-white  p-5 min-w-64 min-h-80  shadow-lg  rounded-lg ">
+            <div className=" flex justify-center h-screen   items-center flex-col dark:bg-black dark:text-white bg-gray-100 p-6">
+                <div className="w-full  bg-white  dark:bg-black dark:text-white p-5 min-w-64 min-h-80  shadow-lg  rounded-lg ">
                     <div className="text-center text-red-600 font-semibold text-lg mb-4">
                         Error : Something went wrong please try again
                     </div>
@@ -195,17 +195,17 @@ const MCQComponent = (props) => {
     if (questionsAndAswers.length == 0) {
 
         return (<>
-            <div className="h-screen flex justify-center  bg-gray-100 items-center flex-col">
+            <div className="h-screen flex justify-center   dark:bg-black dark:text-white  bg-gray-100 items-center flex-col">
 
 
-                <div className="shadow-lg min-w-96 min-h-96 rounded-lg p-10 relative bg-white flex justify-center flex-col items-center">
+                <div className="shadow-lg min-w-96 min-h-96 rounded-lg p-10 relative  dark:bg-black dark:text-white bg-white flex justify-center flex-col items-center">
                     <GenerateUI
                         isGenerateDisabled={isGenerateDisabled}
                         handleGenerateButton={handleGenerateButton}
                     />
                     <div className="absolute  bottom-1 p-5">
-                        <p className="  capitalize opacity-65  text-sm"> Left : paste topic more 100 words</p>
-                        <p className="  capitalize opacity-65  text-sm"> Right : test your understanding </p>
+                        <p className="  capitalize opacity-65  text-sm"> <span className="font-extrabold">Left</span> : paste topic more 100 words</p>
+                        <p className="  capitalize opacity-65  text-sm"> <span className="font-extrabold"> Right </span> : test your understanding </p>
                     </div>
 
                 </div>
@@ -237,7 +237,7 @@ const GenerateUI = (props) => {
 
     return (<>
 
-        <div className="flex  justify-center items-center  ">
+        <div className="flex  justify-center items-center  dark:bg-black dark:text-white ">
 
 
             <button
@@ -342,8 +342,8 @@ const MCQComponentUI = (props) => {
     }
 
     return (<>
-        <div className="  h-screen overflow-y-auto   flex bg-gray-100 justify-center items-center p-10">
-            <div className="p-5 min-w-64 min-h-80  shadow-lg rounded-lg bg-white">
+        <div className="  h-screen overflow-y-auto   dark:bg-black dark:text-white flex bg-gray-100 justify-center items-center p-10">
+            <div className="p-5 min-w-64 min-h-80  border-2 border-white   shadow-lg rounded-lg dark:bg-black dark:text-white bg-white">
 
 
                 <div className="flex justify-end">
@@ -378,7 +378,7 @@ const MCQComponentUI = (props) => {
                                                 type="checkbox" />
                                             <p>{option.option}</p>
                                         </div>
-                                        <p className={`${isExplanationVisible(String(index)) ? "" : "hidden "} ml-2 bg-gray-100 text-sm max-w-96`}> {option.isCorrect ? "✅" : "❌"}  {option.explanation}  </p>
+                                        <p className={`${isExplanationVisible(String(index)) ? "" : "hidden "} ml-2 bg-gray-100 dark:bg-black dark:text-white text-sm max-w-96`}> {option.isCorrect ? "✅" : "❌"}  {option.explanation}  </p>
                                     </label>
                                 </div>
                             </div>))}

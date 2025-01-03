@@ -2,12 +2,16 @@
 
 
 import { Toaster } from 'react-hot-toast';
+import { ThemeProvider } from 'next-themes'
 const Providers = ({ children }) => {
 
     return (<>
 
         <Toaster />
-        {children}
+        <ThemeProvider>
+            {children}
+        </ThemeProvider>
+
     </>)
 }
 

@@ -19,7 +19,7 @@ const ReaderComponent = (props) => {
     return (
         <>
 
-            <div className="p-5 bg-gray-100 h-screen ">
+            <div className="p-5 bg-gray-100 h-screen  dark:bg-black dark:text-white ">
                 <textarea
                     placeholder="Please enter the topic  like web page content or topic in book"
                     onChange={handleChange}

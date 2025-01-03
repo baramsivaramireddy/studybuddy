@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={` antialiased  min-h-screen  max-h-screen `}
+        className={` antialiased  overflow-hidden  min-h-screen  max-h-screen `}
       >
 
         <Providers>

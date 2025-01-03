@@ -37,7 +37,7 @@ const HomePage = () => {
 
     return (<>
 
-        <div className="flex flex-col h-full md:flex-row  relative" >
+        <div className="flex flex-col h-full md:flex-row  dark:bg-black  relative" >
 
             <div className="absolute top-1 right-1">
                 <TokenMenuComponent
@@ -82,8 +82,8 @@ const processLLMResponse = (rawtext) => {
 
 const LoadingMessage = ({ message }) => {
     return (
-        <div className="flex justify-center items-center h-screen bg-gray-100">
-            <p className="text-lg font-medium text-gray-700 animate-pulse">
+        <div className="flex justify-center items-center h-screen bg-gray-100 dark:bg-black dark:text-white">
+            <p className="text-lg font-medium text-gray-700  dark:bg-black dark:text-white animate-pulse">
                 {message || 'Loading... Please wait'}
             </p>
         </div>
