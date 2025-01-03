@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/baramsivaramireddy/studybuddy/compare/v0.4.0...v0.5.0) (2025-01-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* This change alters the core UI, requiring updates to dependent components.
+
+* feat\!: add mobile friendly ui ([9ba55ce](https://github.com/baramsivaramireddy/studybuddy/commit/9ba55ce7db3de69cc00c3d2a7c130e60517f5068))
+
 ## [0.4.0](https://github.com/baramsivaramireddy/studybuddy/compare/v0.3.0...v0.4.0) (2025-01-03)
 
 
