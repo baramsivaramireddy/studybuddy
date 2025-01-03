@@ -117,7 +117,7 @@ const MCQComponent = (props) => {
             <div className=" h-screen  flex justify-center items-center bg-gray-100 dark:bg-black dark:text-white p-5 ">
 
 
-                <div className=" shadow-xl p-5 min-w-64 min-h-80  bg-white  dark:bg-black dark:text-white   rounded-lg animate-pulse ">
+                <div className=" shadow-xl p-5 min-w-64 min-h-80  border-2 dark:border-white bg-white  dark:bg-black dark:text-white   rounded-lg animate-pulse ">
 
                     <div>
 
@@ -177,7 +177,7 @@ const MCQComponent = (props) => {
         return (<>
 
             <div className=" flex justify-center h-screen   items-center flex-col dark:bg-black dark:text-white bg-gray-100 p-6">
-                <div className="w-full  bg-white  dark:bg-black dark:text-white p-5 min-w-64 min-h-80  shadow-lg  rounded-lg ">
+                <div className="w-full  bg-white  dark:bg-black border-2 dark:border-white  dark:text-white p-5 min-w-64 min-h-80  shadow-lg  rounded-lg ">
                     <div className="text-center text-red-600 font-semibold text-lg mb-4">
                         Error : Something went wrong please try again
                     </div>
@@ -195,18 +195,25 @@ const MCQComponent = (props) => {
     if (questionsAndAswers.length == 0) {
 
         return (<>
-            <div className="h-screen flex justify-center   dark:bg-black dark:text-white  bg-gray-100 items-center flex-col">
+            <div className="h-screen flex justify-center  p-5  dark:bg-black dark:text-white  bg-gray-100 items-center flex-col">
 
 
-                <div className="shadow-lg min-w-96 min-h-96 rounded-lg p-10 relative  dark:bg-black dark:text-white bg-white flex justify-center flex-col items-center">
+                <div className="shadow-lg md:min-w-96 md:min-h-96 min-h-96 min-w-64 border-2 dark:border-white rounded-lg p-10 relative  dark:bg-black dark:text-white bg-white flex justify-center flex-col items-center">
                     <GenerateUI
                         isGenerateDisabled={isGenerateDisabled}
                         handleGenerateButton={handleGenerateButton}
                     />
-                    <div className="absolute  bottom-1 p-5">
+                    <div className="absolute  bottom-1 p-5 hidden md:block">
                         <p className="  capitalize opacity-65  text-sm"> <span className="font-extrabold">Left</span> : paste topic more 100 words</p>
                         <p className="  capitalize opacity-65  text-sm"> <span className="font-extrabold"> Right </span> : test your understanding </p>
                     </div>
+
+                    <div className="mt-6 md:hidden">
+                        <p className="text-gray-600 text-sm">
+                            Enter a text of more than 100 words below and click "Generate Questions" to proceed.
+                        </p>
+                    </div>
+            
 
                 </div>
 

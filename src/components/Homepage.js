@@ -37,7 +37,7 @@ const HomePage = () => {
 
     return (<>
 
-        <div className="flex flex-col h-full md:flex-row  dark:bg-black  relative" >
+        <div className="flex flex-col h-full md:flex-row md:flex-row-reverseg   dark:bg-black  relative" >
 
             <div className="absolute top-1 right-1">
                 <TokenMenuComponent
@@ -45,11 +45,7 @@ const HomePage = () => {
                     setToken={setToken}
                 />
             </div>
-            <div className="md:w-1/2 h-full">
-                <ReaderComponent
 
-                    setText={setText} />
-            </div>
             <div className="md:w-1/2 h-full">
 
                 {isLoading ? <LoadingMessage message={'Checking for Gemini key in  your device .Please wait'} /> : <MCQComponent
@@ -60,6 +56,11 @@ const HomePage = () => {
                     questionsAndAswers={questionsAndAswers}
                 />}
 
+            </div>
+            <div className="md:w-1/2 h-full">
+                <ReaderComponent
+
+                    setText={setText} />
             </div>
         </div>
 
