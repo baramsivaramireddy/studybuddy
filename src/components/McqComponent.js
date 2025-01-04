@@ -210,7 +210,7 @@ const MCQComponent = (props) => {
 
                     <div className="mt-6 md:hidden">
                         <p className="text-gray-600 text-sm">
-                            Enter a text of more than 100 words below and click "Generate Questions" to proceed.
+                            Enter a text of more than 100 words below and click Generate Questions to proceed.
                         </p>
                     </div>
             
